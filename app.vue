@@ -1,3 +1,7 @@
 <template>
-  <div>nuxt app</div>
+  <div class="flex min-h-screen flex-col">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
