@@ -97,12 +97,30 @@
   <div class="w-full max-w-7xl mx-auto px-20 py-10">
     <h1 class="text-center text-4xl font-medium mb-5">Blog</h1>
     <nav class="mb-5">
-      <ul class="flex items-center">
-        <li class="mr-5 text-[#99a5ab]">
-          <NuxtLink to="/" class="hover:text-azure">Home</NuxtLink
+      <ul
+        class="flex items-center"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          class="mr-5 text-[#99a5ab]"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <NuxtLink to="/" class="hover:text-azure" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" /> </NuxtLink
           ><span class="pl-5">|</span>
         </li>
-        <li>Blog</li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="name">Blog</span>
+          <meta itemprop="position" content="2" />
+        </li>
       </ul>
     </nav>
     <div class="grid grid-cols-3 gap-14">
