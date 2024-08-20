@@ -118,8 +118,10 @@
           itemscope
           itemtype="https://schema.org/ListItem"
         >
-          <span itemprop="name">Blog</span>
-          <meta itemprop="position" content="2" />
+          <meta itemprop="item" href="/blog">
+            <span itemprop="name">Blog</span>
+            <meta itemprop="position" content="2" />
+          </meta>
         </li>
       </ul>
     </nav>
