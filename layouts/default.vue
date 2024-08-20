@@ -3,7 +3,7 @@
 <template>
   <WidgetsAppHeader />
 
-  <main class="grow p-10 max-w-7xl mx-auto w-full">
+  <main class="grow">
     <slot />
   </main>
   <WidgetsAppFooter />
