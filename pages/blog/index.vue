@@ -96,50 +96,53 @@
 <template>
   <div class="w-full max-w-7xl mx-auto px-20 py-10">
     <h1 class="text-center text-4xl font-medium mb-5">Blog</h1>
-    <nav class="mb-5">
-      <ul
-        class="flex items-center"
-        itemscope
-        itemtype="https://schema.org/BreadcrumbList"
-      >
-        <li
-          class="mr-5 text-[#99a5ab]"
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
-        >
-          <NuxtLink to="/" class="hover:text-azure" itemprop="item">
-            <span itemprop="name">Home</span>
-            <meta itemprop="position" content="1" /> </NuxtLink
-          ><span class="pl-5">|</span>
-        </li>
-        <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
-        >
-          <meta itemprop="item" href="/blog">
-            <span itemprop="name">Blog</span>
-            <meta itemprop="position" content="2" />
-          </meta>
-        </li>
-      </ul>
-    </nav>
-    <div class="grid grid-cols-3 gap-14" itemscope itemtype="https://schema.org/ItemList">
-      <div v-for="(post, index) in posts" class="relative" itemprop="itemListElement"
+    <Breadcrumbs
+      :breadcrumbs="[
+        {
+          label: 'Home',
+          pageLink: '/',
+        },
+        {
+          label: 'Blog',
+        },
+      ]"
+    />
+
+    <div
+      class="grid grid-cols-3 gap-14"
       itemscope
-      itemtype="https://schema.org/ListItem">
-      <meta itemprop="position" :content="`${index + 1}`" />
-        <img :src="post.preview" :alt="post.title" class="mb-7" itemprop="image" />
-        <h2 class="text-2xl font-extrabold mb-4" itemprop="name">{{ post.title }}</h2>
+      itemtype="https://schema.org/ItemList"
+    >
+      <div
+        v-for="(post, index) in posts"
+        class="relative"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        <meta itemprop="position" :content="`${index + 1}`" />
+        <img
+          :src="post.preview"
+          :alt="post.title"
+          class="mb-7"
+          itemprop="image"
+        />
+        <h2 class="text-2xl font-extrabold mb-4" itemprop="name">
+          {{ post.title }}
+        </h2>
         <div
           class="flex text-base text-[#c4c4c4] items-center justify-between mb-4"
         >
-          <meta itemprop="datePublished" :content="new Date(post.publishedDate).toISOString().split('T')[0]" />
+          <meta
+            itemprop="datePublished"
+            :content="new Date(post.publishedDate).toISOString().split('T')[0]"
+          />
           <div class="">{{ post.publishedDate }}</div>
           <div class="font-bold" itemprop="author">{{ post.author }}</div>
         </div>
-        <div class="text-xl mb-4" itemprop="description">{{ post.announce }}</div>
+        <div class="text-xl mb-4" itemprop="description">
+          {{ post.announce }}
+        </div>
         <div class="text-base text-[#c4c4c4]">{{ post.length }}</div>
         <NuxtLink
           :href="`/blog/${post.alias}`"
