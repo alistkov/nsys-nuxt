@@ -125,21 +125,25 @@
         </li>
       </ul>
     </nav>
-    <div class="grid grid-cols-3 gap-14">
-      <div v-for="post in posts" class="relative">
-        <img :src="post.preview" :alt="post.title" class="mb-7" />
-        <h2 class="text-2xl font-extrabold mb-4">{{ post.title }}</h2>
+    <div class="grid grid-cols-3 gap-14" itemscope itemtype="https://schema.org/ItemList">
+      <div v-for="(post, index) in posts" class="relative" itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem">
+      <meta itemprop="position" :content="`${index + 1}`" />
+        <img :src="post.preview" :alt="post.title" class="mb-7" itemprop="image" />
+        <h2 class="text-2xl font-extrabold mb-4" itemprop="name">{{ post.title }}</h2>
         <div
           class="flex text-base text-[#c4c4c4] items-center justify-between mb-4"
         >
-          <div class="">{{ post.publishedDate }}</div>
-          <div class="font-bold">{{ post.author }}</div>
+          <div class="" itemprop="datePublished">{{ post.publishedDate }}</div>
+          <div class="font-bold" itemprop="author">{{ post.author }}</div>
         </div>
-        <div class="text-xl mb-4">{{ post.announce }}</div>
+        <div class="text-xl mb-4" itemprop="description">{{ post.announce }}</div>
         <div class="text-base text-[#c4c4c4]">{{ post.length }}</div>
         <NuxtLink
           :href="`/blog/${post.alias}`"
           class="absolute top-0 right-0 w-full h-full z-1"
+          itemprop="url"
         ></NuxtLink>
       </div>
     </div>
