@@ -135,7 +135,8 @@
         <div
           class="flex text-base text-[#c4c4c4] items-center justify-between mb-4"
         >
-          <div class="" itemprop="datePublished">{{ post.publishedDate }}</div>
+          <meta itemprop="datePublished" :content="new Date(post.publishedDate).toISOString().split('T')[0]" />
+          <div class="">{{ post.publishedDate }}</div>
           <div class="font-bold" itemprop="author">{{ post.author }}</div>
         </div>
         <div class="text-xl mb-4" itemprop="description">{{ post.announce }}</div>
