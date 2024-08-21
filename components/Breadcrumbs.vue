@@ -27,16 +27,16 @@
         >
           <template v-if="breadcrumbsItem?.pageLink">
             <NuxtLink
-              to="/"
+              :to="breadcrumbsItem.pageLink"
               class="text-[#99a5ab] hover:text-azure"
               itemprop="item"
             >
-              <span itemprop="name">Home</span>
+              <span itemprop="name">{{ breadcrumbsItem.label }}</span>
               <meta itemprop="position" :content="`${index + 1}`" />
             </NuxtLink>
             <span class="pl-5">|</span>
           </template>
-          <span v-else>Blog</span>
+          <span v-else>{{ breadcrumbsItem.label }}</span>
         </li>
       </ul>
     </nav>
