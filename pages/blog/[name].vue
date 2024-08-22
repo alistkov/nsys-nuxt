@@ -149,8 +149,10 @@
         </div>
       </div>
       <img :src="news.imageUrl" :alt="news.title" class="mb-10" />
-      <div v-for="content in news.content" itemprop="articleBody">
-        <div v-html="content" class="content"></div>
+      <div itemprop="articleBody">
+        <template v-for="content in news.content">
+          <div v-html="content" class="content"></div>
+        </template>
       </div>
     </article>
   </div>
