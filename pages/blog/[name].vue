@@ -1,6 +1,36 @@
 <script setup lang="ts">
   const route = useRoute();
 
+  useJsonld({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id':
+        'https://nsysgroup.com/blog/certified-pre-owned-phones-boost-your-stock/',
+    },
+    name: 'Certified Pre-Owned Phones: Boost Your Stock',
+    headline: 'Certified Pre-Owned Phones: Boost Your Stock',
+    description:
+      'Higher prices and lower return rate &#x2014; certified phones are winning the game.',
+    url: 'https://nsysgroup.com/blog/certified-pre-owned-phones-boost-your-stock/',
+    image: ['https://nsysgroup.com/media/geekirtl/cover-42.webp'],
+    datePublished: '2024-07-18T10:23:04',
+    dateModified: '2024-08-01T10:23:04',
+    author: {
+      '@type': 'Person',
+      name: 'NSYS Group Team',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NSYS Group',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nsysgroup.com/media/xmfof0pb/nsys-group.webp',
+      },
+    },
+  });
+
   interface News {
     title: string;
     date: string;
@@ -75,7 +105,7 @@
 
 <template>
   <div class="w-full max-w-7xl mx-auto px-20 py-10">
-    <h1 class="text-center text-4xl font-medium mb-5">Blog</h1>
+    <h2 class="text-center text-4xl font-medium mb-5">Blog</h2>
     <Breadcrumbs
       :breadcrumbs="[
         {
@@ -91,19 +121,37 @@
         },
       ]"
     />
-    <article class="max-w-3xl mx-auto w-full">
-      <h2 class="text-4xl leading-tight font-bold mb-4">{{ news.title }}</h2>
+    <article
+      class="max-w-3xl mx-auto w-full"
+      itemscope
+      itemtype="https://schema.org/BlogPosting"
+    >
+      <h1 class="text-4xl leading-tight font-bold mb-4" itemprop="name">
+        {{ news.title }}
+      </h1>
+      <meta :content="news.title" itemprop="headline" />
+      <meta
+        content="/blog/certified-pre-owned-phones-boost-your-stock/"
+        itemprop="url"
+      />
+      <meta :content="news.imageUrl" itemprop="image" />
       <div class="flex items-center text-lg mb-10">
-        <div class="text-[#c4c4c4]">{{ news.date }}</div>
+        <div class="text-[#c4c4c4]" itemprop="datePublished">
+          {{ news.date }}
+        </div>
         <span class="w-[5px] h-[5px] bg-azure mx-2 rounded-full block"></span>
-        <div class="text-[#c4c4c4] font-bold">{{ news.author }}</div>
+        <div class="text-[#c4c4c4] font-bold" itemprop="author">
+          {{ news.author }}
+        </div>
         <span class="w-[5px] h-[5px] bg-azure mx-2 rounded-full block"></span>
-        <div class="text-[#c4c4c4]">{{ news.readTiming }}</div>
+        <div class="text-[#c4c4c4]" itemprop="timeRequired">
+          {{ news.readTiming }}
+        </div>
       </div>
       <img :src="news.imageUrl" :alt="news.title" class="mb-10" />
-      <template v-for="content in news.content">
+      <div v-for="content in news.content" itemprop="articleBody">
         <div v-html="content" class="content"></div>
-      </template>
+      </div>
     </article>
   </div>
 </template>
